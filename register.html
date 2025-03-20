@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            text-align: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            color: black;
+        }
+        h2 {
+            text-align: center;
+            color: #ff5e62;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: #ff5e62;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #e04e55;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your full name">
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" placeholder="Enter your phone number">
+        <label for="gender">Gender</label>
+        <select id="gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password">
+        <label for="age">Age</label>
+        <input type="number" id="age" placeholder="Enter your age">
+        <button onclick="validateForm()">Register</button>
+    </div>
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let gender = document.getElementById("gender").value;
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value;
+            let age = document.getElementById("age").value;
+            if (!name||!phone||!gender||!email||!password||!age) {
+                alert("Please fill in all fields.");
+                return;
+            }
+            let v=true;
+            for (let i=0;i<phone.length;i++) {
+                if (phone[i]<'0'||phone[i]>'9') {
+                    v=false;
+                    break;
+                }
+            }
+            if (phone.length!==10||!v) {
+                alert("Please enter a valid 10-digit phone number.");
+                return;
+            }
+            alert("Registration Successful!");
+        }
+    </script>
+</body>
+</html>

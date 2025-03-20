@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            color: black;
+        }
+        input,select,button {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .work {
+            text-align: left;
+            margin-top: 15px;
+        }
+        .work div {
+            background: #ecf0f1;
+            margin: 5px 0;
+            padding: 8px;
+            border-left: 5px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fitness Tracker</h1>
+    <div class="container">
+        <h2>Log Your Workout</h2>
+        <select id="weekday">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select>
+        <select id="exercise">
+            <option value="Running">Running</option>
+            <option value="Cycling">Cycling</option>
+            <option value="Swimming">Swimming</option>
+            <option value="Weightlifting">Weightlifting</option>
+        </select>
+        <input type="number" id="duration" placeholder="Duration (minutes)">
+        <button onclick="addEntry()">Add Entry</button>
+        <h2>Workout Log</h2>
+        <div id="work" class="work"></div>
+    </div>
+    <script>
+        function calculatecal(exercise,duration) {
+            let calpermin= {
+                "Running": 10,
+                "Cycling": 8,
+                "Swimming": 12,
+                "Weightlifting": 6
+            };
+            return duration*(calpermin[exercise]);
+        }
+        function addEntry() {
+            let weekday = document.getElementById('weekday').value;
+            let exercise = document.getElementById('exercise').value;
+            let duration = document.getElementById('duration').value;
+            let w = document.getElementById('work');
+            if (duration) {
+                let calories = calculatecal(exercise, duration);
+                w.innerHTML += '<div>' + weekday + ': ' + exercise + ' - ' + duration + ' min, ' + calories + ' kcal burned</div>';
+                document.getElementById('duration').value = '';
+            } else {
+                alert("Please enter a valid duration.");
+            }
+        }
+    </script>
+</body>
+</html>
